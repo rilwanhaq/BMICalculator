@@ -40,11 +40,8 @@ function removeNthElement(arr, n) {
             Output: [1,3,4,7]
         Write you code below
     */
-        var i = arr.length;
-        while (i--) {
-            (i + 1) % 3 === 0 && arr.splice(n, 1);
-          }
-          return arr;
+   arr.splice(n,1)
+   return arr;
 }
 
 module.exports = {
