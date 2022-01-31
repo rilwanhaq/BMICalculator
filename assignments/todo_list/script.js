@@ -1,25 +1,11 @@
 let todos = [];
-// var todobutton = document.querySelector('button');
 var addToDoButton = document.querySelector('button');
 // var inputfield = document.querySelector('input');
 var todo = document.querySelector('.todos')
 // var i = 0;
+let drop = document.querySelector("#dropdown");
+addToDoButton.addEventListener("click", work);
 
-
-// todobutton.addEventListener("click", additem)
-
-// function additem(){
-//     var para = document.createElement('p')
-//     para.setAttribute("key",i);
-//     i = i + 1;
-//     para.innerHTML = inputfield.value;
-//     todo.appendChild(para);
-//     inputfield.value="";
-//     para.addEventListener("click", deleteitem)
-//     function deleteitem(){
-//         todo.removeChild(para)
-//     }
-// }
 
 async function main() {
     try {
@@ -38,7 +24,17 @@ async function main() {
     }
 }
 
-addToDoButton.addEventListener('click',function(){
+function work(){
+    if(drop.value ==="list"){
+        main()
+    }else if(drop.value === "completed"){
+        completed()
+    }else if(drop.value === "pending"){
+        pending()
+    }
+}
+
+function completed(){
     todo.innerHTML = ""
     todos.filter(todom => todom.completed).forEach((todom,index)=>{
         const newTodo = document.createElement('p')
@@ -46,6 +42,44 @@ addToDoButton.addEventListener('click',function(){
         newTodo.innerHTML = todom.title
         todo.appendChild(newTodo);
     })
-})
 
+}
+
+function pending(){
+    todo.innerHTML = ""
+    todos.filter(todom => !todom.completed).forEach((todom,index)=>{
+        const newTodo = document.createElement('p')
+        newTodo.setAttribute('key',index)
+        newTodo.innerHTML = todom.title
+        todo.appendChild(newTodo);
+    })
+}
 main()
+
+// addToDoButton.addEventListener('click',function(){
+//     todo.innerHTML = ""
+//     todos.filter(todom => todom.completed).forEach((todom,index)=>{
+//         const newTodo = document.createElement('p')
+//         newTodo.setAttribute('key',index)
+//         newTodo.innerHTML = todom.title
+//         todo.appendChild(newTodo);
+//     })
+// })
+
+
+
+
+// todobutton.addEventListener("click", additem)
+
+// function additem(){
+//     var para = document.createElement('p')
+//     para.setAttribute("key",i);
+//     i = i + 1;
+//     para.innerHTML = inputfield.value;
+//     todo.appendChild(para);
+//     inputfield.value="";
+//     para.addEventListener("click", deleteitem)
+//     function deleteitem(){
+//         todo.removeChild(para)
+//     }
+// }
